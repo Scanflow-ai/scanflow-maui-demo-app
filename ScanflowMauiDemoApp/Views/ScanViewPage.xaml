@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:scanflow="clr-namespace:Scanflow.BarcodeCapture.Maui;assembly=Scanflow.BarcodeCapture.Maui"
+             x:Class="ScanflowMauiDemoApp.Views.ScanViewPage"
+             Title="ScanViewPage">
+
+    <NavigationPage.TitleView>
+        <Grid>
+            <Label x:Name="scanTitle" 
+                   TextColor="White" 
+                   HorizontalOptions="StartAndExpand" 
+                   VerticalOptions="Center" 
+                   FontSize="17" 
+                   Margin="0,15,18,20"/>
+            <Image Source="settings.svg" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="EndAndExpand" 
+                   HeightRequest="28" 
+                   Margin="{OnPlatform Android='0,15,18,20', iOS='0'}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSettingsTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid x:Name="backdrop" 
+              HorizontalOptions="FillAndExpand" 
+              VerticalOptions="FillAndExpand"
+              BackgroundColor="Black">
+            
+            <!-- Camera will be inserted at index 0 programmatically -->
+            
+            <!-- Overlay controls on top of camera -->
+            <Grid VerticalOptions="FillAndExpand" 
+                  HorizontalOptions="FillAndExpand"
+                  InputTransparent="False">
+                
+                <!-- Flash toggle at top right -->
+                <Image Source="flashoff" 
+                       x:Name="torchImage" 
+                       VerticalOptions="Start" 
+                       HorizontalOptions="End" 
+                       HeightRequest="30" 
+                       Margin="0,20,20,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FlashLight_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <!-- Bottom controls -->
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="Center" 
+                             VerticalOptions="End"
+                             Margin="0,0,0,30">
+                    <Button Text="Validate Key" 
+                            IsVisible="False"
+                            Clicked="OnRetryValidation" 
+                            BackgroundColor="#0C54C5" 
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="44"/>
+                </StackLayout>
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

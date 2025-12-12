@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScanflowMauiDemoApp.Views.SplashPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    
+    <Grid>
+        <!-- Hidden container for camera initialization -->
+        <Grid x:Name="cameraContainer" 
+              Opacity="0"
+              InputTransparent="True"
+              HeightRequest="100" 
+              WidthRequest="100" 
+              HorizontalOptions="Start" 
+              VerticalOptions="Start"/>
+        
+        <!-- Main Content -->
+        <VerticalStackLayout VerticalOptions="Center" 
+                             HorizontalOptions="Center"
+                             Spacing="20"
+                             Padding="30">
+            
+            <!-- Logo -->
+            <Image Source="toplogo" 
+                   HeightRequest="60"
+                   HorizontalOptions="Center"/>
+            
+            <!-- Status Container -->
+            <Frame x:Name="statusFrame"
+                   BackgroundColor="#F5F5F5"
+                   BorderColor="#E0E0E0"
+                   CornerRadius="12"
+                   Padding="20"
+                   HasShadow="False"
+                   HorizontalOptions="Center">
+                
+                <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
+                    
+                    <!-- Loading State -->
+                    <VerticalStackLayout x:Name="loadingState" 
+                                         IsVisible="True"
+                                         Spacing="10"
+                                         HorizontalOptions="Center">
+                        <ActivityIndicator x:Name="loadingIndicator" 
+                                           IsRunning="True" 
+                                           Color="#0C54C5" 
+                                           HeightRequest="40" 
+                                           WidthRequest="40"/>
+                        <Label x:Name="statusLabel" 
+                               Text="Initializing..." 
+                               TextColor="#424242"
+                               FontSize="16"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    
+                    <!-- Success State -->
+                    <VerticalStackLayout x:Name="successState" 
+                                         IsVisible="False"
+                                         Spacing="10"
+                                         HorizontalOptions="Center">
+                        <Label Text="✓" 
+                               TextColor="#4CAF50"
+                               FontSize="40"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="Ready!" 
+                               TextColor="#4CAF50"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                    
+                    <!-- Error State -->
+                    <VerticalStackLayout x:Name="errorState" 
+                                         IsVisible="False"
+                                         Spacing="15"
+                                         HorizontalOptions="Center">
+                        <Label Text="✗" 
+                               TextColor="#F44336"
+                               FontSize="40"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="errorLabel" 
+                               Text="Activation failed" 
+                               TextColor="#F44336"
+                               FontSize="14"
+                               HorizontalTextAlignment="Center"
+                               MaxLines="3"/>
+                        <Button x:Name="retryButton"
+                                Text="Retry"
+                                BackgroundColor="#0C54C5"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="44"
+                                Clicked="OnRetryClicked"/>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- Removed first time message - not needed -->
+            
+        </VerticalStackLayout>
+    </Grid>
+    
+</ContentPage>
+

@@ -20,15 +20,15 @@ namespace ScanflowMauiDemoApp.Services
         
         private const string LicenseValidatedKey = "ScanflowLicenseValidated";
         private const string SavedLicenseKey = "ScanflowSavedLicenseKey";
-        
+
         // Platform-specific license keys
         private const string AndroidLicenseKey = "PLACE YOUR KEY";
         private const string IOSLicenseKey = "PLACE YOUR KEY";
-        
+
         #endregion
-        
+
         #region Private Fields
-        
+
         private bool _isInitialized;
         private bool _isValidationInProgress;
         private string _lastError = string.Empty;

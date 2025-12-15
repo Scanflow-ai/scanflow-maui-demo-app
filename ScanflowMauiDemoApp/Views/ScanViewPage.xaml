@@ -56,12 +56,11 @@
                              VerticalOptions="End"
                              Margin="0,0,0,30">
                     <Button Text="Validate Key" 
-                            IsVisible="False"
-                            Clicked="OnRetryValidation" 
                             BackgroundColor="#0C54C5" 
                             TextColor="White"
                             CornerRadius="8"
-                            HeightRequest="44"/>
+                            HeightRequest="44"
+                            Padding="20,0"/>
                 </StackLayout>
                 
             </Grid>

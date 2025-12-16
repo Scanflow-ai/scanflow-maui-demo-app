@@ -22,7 +22,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
 
 ## Prerequisites
 
-- Visual Studio 2022 (latest version recommended)
+- Visual Studio 2022
 - .NET 9.0 SDK
 - .NET MAUI Workload installed
 
@@ -47,11 +47,10 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
     private const string AndroidLicenseKey = "PLACE YOUR KEY";
     private const string IOSLicenseKey = "PLACE YOUR KEY";
     ```
-
-4.  **Restore Nuget Packages**
-    Right-click on the solution in Solution Explorer and select **Restore NuGet Packages**.
-
-    *Note: Ensure you have access to the Scanflow NuGet feed if the packages are not available publicly.*
+4. **Install NuGet Packages**
+   -Right-click on the solution in Solution Explorer and select Manage NuGet Packages.
+   - Install the **Scanflow.Barcode.Maui** NuGet package.
+   -Once it is installed, ensure that **Xamarin.AndroidX.Tracing.Tracing.Ktx 1.3.0.1** is also installed for Android as a dependency package.
 
 5.  **Run the Application**
     - Select your target platform (Android Emulator/Device or iOS Simulator/Device) from the run dropdown.
@@ -68,9 +67,12 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
 
 ## Troubleshooting
 
-- **License Errors**: Ensure your device has internet access for the initial license validation. Double-check that your license key is correct and matches the bundle ID/package name (`com.scanflow.mauidemo`).
+- **License Errors**: Ensure your device has internet access for the initial license validation. Double-check that your license key is correct and matches the bundle ID/package name 
 - **Camera Permissions**: The app should request camera permissions automatically. If scanning doesn't start, check the app permissions in your device settings.
 
-## License
 
-[Add your license information here]
+##Purchase a License Key
+-Create a free test account at https://console.scanflow.ai/ if you do not already have one if you want to use Scanflow.
+-Visit https://console.scanflow.ai/login to access your account.
+-Click "Create native SDK licensing key" and input the bundle ID for your project if you don't yet have a license key for your app.
+-The license key should be copied.

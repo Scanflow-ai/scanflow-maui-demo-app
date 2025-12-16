@@ -71,7 +71,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
 - **Camera Permissions**: The app should request camera permissions automatically. If scanning doesn't start, check the app permissions in your device settings.
 
 
-##Purchase a License Key
+## Purchase a License Key
 -Create a free test account at https://console.scanflow.ai/ if you do not already have one if you want to use Scanflow.
 -Visit https://console.scanflow.ai/login to access your account.
 -Click "Create native SDK licensing key" and input the bundle ID for your project if you don't yet have a license key for your app.

@@ -43,7 +43,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
     
     1.  Create a free test account: Visit https://console.scanflow.ai/ if you do not already have an account.
     2.  Login: Go to https://console.scanflow.ai/login to access your account.
-    3.  Generate Key: Click "Create native SDK licensing key" and input the bundle ID for this project: `com.scanflow.demo`.
+    3.  Generate Key: Click "Create native SDK licensing key" and input the bundle ID for this project.eg :`com.scanflow.demo`.
     4.  Copy Key: Copy the generated license key.   
 
 4.  **Configure License Keys**

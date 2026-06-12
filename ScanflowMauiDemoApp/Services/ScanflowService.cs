@@ -22,8 +22,8 @@ namespace ScanflowMauiDemoApp.Services
         private const string SavedLicenseKey = "ScanflowSavedLicenseKey";
 
         // Platform-specific license keys
-        private const string AndroidLicenseKey = "PLACE YOUR KEY";
-        private const string IOSLicenseKey = "PLACE YOUR KEY";
+        private const string AndroidLicenseKey = "PLACE YOUR ANDROID LICENSE KEY HERE";
+        private const string IOSLicenseKey = "PLACE YOUR iOS LICENSE KEY HERE";
 
         #endregion
 

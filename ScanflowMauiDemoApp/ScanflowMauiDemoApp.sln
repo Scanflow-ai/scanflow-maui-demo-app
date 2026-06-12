@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.2.0
+# Visual Studio Version 18
+VisualStudioVersion = 18.7.11822.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanflowMauiDemoApp", "ScanflowMauiDemoApp.csproj", "{D1B57B8E-2356-9A47-55C3-FED2DEFA4193}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanflowMauiDemoApp", "ScanflowMauiDemoApp.csproj", "{992C4F70-1CC0-4BF0-8399-3913A90D9613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +10,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1B57B8E-2356-9A47-55C3-FED2DEFA4193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1B57B8E-2356-9A47-55C3-FED2DEFA4193}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1B57B8E-2356-9A47-55C3-FED2DEFA4193}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1B57B8E-2356-9A47-55C3-FED2DEFA4193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992C4F70-1CC0-4BF0-8399-3913A90D9613}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

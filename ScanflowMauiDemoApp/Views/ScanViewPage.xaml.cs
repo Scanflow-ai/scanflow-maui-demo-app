@@ -99,27 +99,32 @@ public partial class ScanViewPage : ContentPage
     {
         try
         {
-            Console.WriteLine("[ScanViewPage] iOS: Setting up camera...");
-            
-            // Create iOS camera view (similar to Android CameraPreview)
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Step 1: Reading license from ScanflowService...");
+            var licenseKey = _scanflowService.LicenseKey;
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | LicenseKey length={licenseKey?.Length ?? 0}, value={licenseKey}");
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Scan config: {_scanConfig.Name}");
+
+            var scannerMode = GetIOSScannerMode();
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Step 2: Creating IOSCameraView (scannerMode={scannerMode})...");
+
             _iosCameraView = new IOSCameraView
             {
-                LicenseKey = _scanflowService.LicenseKey,
-                ScannerMode = GetIOSScannerMode(),
+                LicenseKey = licenseKey,
+                ScannerMode = scannerMode,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill,
                 BackgroundColor = Colors.Black
             };
-            
-            // Subscribe to events
+
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Step 3: Subscribing to scan and license events...");
             _iosCameraView.OnScanResult += OnIOSScanResult;
             _iosCameraView.OnLicenseSuccess += OnIOSLicenseSuccess;
             _iosCameraView.OnLicenseFailure += OnIOSLicenseFailure;
-            
-            // Add camera to backdrop (just like Android!)
+
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Step 4: Adding camera view to backdrop (triggers native init + ValidateLicense)...");
             backdrop.Children.Insert(0, _iosCameraView);
-            
-            Console.WriteLine("[ScanViewPage] iOS: Camera view added to backdrop");
+
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] iOS SetupIOSCamera | Step 5: Complete — awaiting native license validation callback");
         }
         catch (Exception ex)
         {
@@ -175,18 +180,20 @@ public partial class ScanViewPage : ContentPage
     
     private void OnIOSLicenseSuccess(object? sender, string response)
     {
-        Console.WriteLine($"[ScanViewPage] iOS: License success: {response}");
+        Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] OnIOSLicenseSuccess | VALIDATION OK | response={response}");
         MainThread.BeginInvokeOnMainThread(async () =>
         {
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] OnIOSLicenseSuccess | Showing success toast to user");
             await Toast.Make(response, CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
         });
     }
     
     private void OnIOSLicenseFailure(object? sender, string error)
     {
-        Console.WriteLine($"[ScanViewPage] iOS: License failure: {error}");
+        Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] OnIOSLicenseFailure | VALIDATION FAILED | error={error}");
         MainThread.BeginInvokeOnMainThread(async () =>
         {
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}] [ScanViewPage] OnIOSLicenseFailure | Showing error toast and alert to user");
             await Toast.Make(error, CommunityToolkit.Maui.Core.ToastDuration.Long).Show();
             await DisplayAlert("License Error", error, "OK");
         });

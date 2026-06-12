@@ -1,0 +1,136 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-android;net9.0-ios18.0</TargetFrameworks>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ScanflowMauiDemoApp</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AndroidEnableAot>false</AndroidEnableAot>
+
+    <!-- Display name -->
+    <ApplicationTitle>ScanflowMauiDemoApp</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>com.scanflow.mauidemo</ApplicationId>
+
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- Minimum OS platform versions -->
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">34.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+
+  <!-- Debug build -->
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+    <AndroidStoreUncompressedFileExtensions>.tflite</AndroidStoreUncompressedFileExtensions>
+    <ApplicationId>com.scanflow.mauidemo</ApplicationId>
+  </PropertyGroup>
+
+  <!-- Release build settings -->
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+    <AndroidStoreUncompressedFileExtensions>.tflite</AndroidStoreUncompressedFileExtensions>
+    <ApplicationId>com.scanflow.mauidemo</ApplicationId>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidSigningKeyStore>/Users/racitsolutionspvtltd/Downloads/mauiscanflowdemo.jks</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Optisol@2024</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>key0</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Optisol@2024</AndroidSigningKeyPass>
+    <DebugSymbols>true</DebugSymbols>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+
+  <!-- MAUI assets -->
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" />
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+    <MauiFont Include="Resources\Fonts\*" />
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <!-- Ensure unused assets aren’t duplicated -->
+  <ItemGroup>
+    <None Remove="Resources\AppIcon\appicon.svg" />
+    <None Remove="Resources\Images\*.svg" />
+    <None Remove="Resources\Splash\toplogo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiSplashScreen Include="Resources\Splash\toplogo.svg" Color="White" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Splash\splash.svg" Color="white" BaseSize="128,128" />
+  </ItemGroup>
+
+  <!-- App dependencies -->
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
+    <PackageReference Include="InputKit.Maui" Version="4.4.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+    <PackageReference Include="Mopups" Version="1.3.1" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.0" />
+  </ItemGroup>
+
+  <!-- Android: Explicitly exclude -ktx variants to prevent duplicate classes -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <PackageReference Include="Xamarin.AndroidX.Tracing.Tracing.Ktx" Version="1.3.0.1" ExcludeAssets="all" />
+    <PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.5.0.3" ExcludeAssets="all" />
+  </ItemGroup>
+
+  <!-- Exclude duplicate tracing/collection -ktx libraries for Android -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <AndroidExcludeAssets>$(AndroidExcludeAssets);androidx.tracing.tracing-ktx;androidx.collection.collection-ktx</AndroidExcludeAssets>
+  </PropertyGroup>
+
+  <!-- Android-only form -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+	  <PackageReference Include="Scanflow.BarcodeCapture.Maui" Version="8.2.2" />
+  </ItemGroup>
+
+  <!-- XAML build generators -->
+  <ItemGroup>
+    <MauiXaml Update="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\ScanViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+
+  <!-- Release runtime optimizations -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+  </PropertyGroup>
+
+  <!-- Bundle icons fallback workaround -->
+  <ItemGroup>
+    <BundleResource Include="$(NuGetPackageRoot)inputkit.maui/4.4.6/contentFiles/any/net9.0-android35.0/icon512.png"
+                    Condition="Exists('$(NuGetPackageRoot)inputkit.maui/4.4.6/contentFiles/any/net9.0-android35.0/icon512.png')">
+      <NuGetPackageId>InputKit.Maui</NuGetPackageId>
+      <NuGetPackageVersion>4.4.6</NuGetPackageVersion>
+      <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>false</Private>
+      <Link>icon512.png</Link>
+    </BundleResource>
+  </ItemGroup>
+
+  <!-- iOS-specific library -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-ios18.0'">
+    <PackageReference Include="Scanflow.BarcodeCapture.Maui.iOS" Version="2.0.6" />
+  </ItemGroup>
+
+</Project>

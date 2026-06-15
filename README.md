@@ -6,7 +6,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
 
 ## Features
 
-- **Cross-Platform Support**: Runs on Android and iOS (targeting .NET 9.0).
+- **Cross-Platform Support**: Runs on Android and iOS (targeting .NET 10.0).
 - **Scanner Selection**: Choose from various scanning modes (Barcode, QR Code, Batch Inventory, Any).
 - **Scanflow SDK Integration**: Demonstrates how to integrate and use the `Scanflow.BarcodeCapture.Maui` package.
 - **License Validation**: Handles license key validation (API check on first run, cached locally).
@@ -15,15 +15,15 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
 
 ## Technologies Used
 
-- **.NET MAUI** (.NET 9.0)
+- **.NET MAUI** (.NET 10.0)
 - **Scanflow SDK** (`Scanflow.BarcodeCapture.Maui`)
 - **CommunityToolkit.Maui**
 - **Mopups**
 
 ## Prerequisites
 
-- Visual Studio 2022
-- .NET 9.0 SDK
+- Visual Studio 2026
+- .NET 10.0 SDK
 - .NET MAUI Workload installed
 
 ## Getting Started
@@ -35,7 +35,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
     ```
 
 2.  **Open the Solution**
-    Open `ScanflowMauiDemoApp.sln` in Visual Studio 2022.
+    Open `ScanflowMauiDemoApp.sln` in Visual Studio 2026.
 
 
  3.  **Purchase a License Key**

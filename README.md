@@ -58,7 +58,7 @@ Scanflow is an AI Scanner on smart devices for data capture and workflow automat
     ```
 5. **Install NuGet Packages**
    -Right-click on the solution in Solution Explorer and select Manage NuGet Packages.
-   - Install the **Scanflow.Barcode.Maui** NuGet package.
+   - Install the **Scanflow.Barcode.Maui 2.1.0** NuGet package.
    -Once it is installed, ensure that **Xamarin.AndroidX.Tracing.Tracing.Ktx 1.3.0.1** is also installed for Android as a dependency package.
 
 6.  **Run the Application**
